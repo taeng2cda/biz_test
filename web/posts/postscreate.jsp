@@ -12,6 +12,7 @@
 </head>
 <body>
 <h1>게시판 생성</h1>
+test
     <form action="${pageContext.request.contextPath}/posts/create" method="post">
         닉네임 <input type="text" value="" name="id"> <br>
         글제목 <input type="text" value="" name="title"> <br>
