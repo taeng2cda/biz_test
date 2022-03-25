@@ -4,7 +4,7 @@ import java.util.Date;
 
 
 public class UserTableVo {
-    private String id;
+    private int id;
     private String email;
     private String name;
     private String password;
@@ -12,22 +12,23 @@ public class UserTableVo {
     private Date updated_at;
 
     public UserTableVo(){}
-    public UserTableVo(String id, String password, String email, String name , Date created_at, Date updated_at){
-        this.id=id;
-        this.password=password;
-        this.email=email;
-        this.name=name;
-        this.created_at=created_at;
-        this.updated_at=updated_at;
+
+    public UserTableVo(int id, String email, String name, String password, Date created_at, Date updated_at) {
+        this.id = id;
+        this.email = email;
+        this.name = name;
+        this.password = password;
+        this.created_at = created_at;
+        this.updated_at = updated_at;
     }
 
-
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;}
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getEmail() {
         return email;

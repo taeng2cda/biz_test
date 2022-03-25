@@ -1,5 +1,6 @@
 package main.java.Controller;
 
+import main.java.DAO.PostsDao;
 import main.java.DAO.UserTableDao;
 import main.java.VO.UserTableVo;
 
@@ -20,17 +21,23 @@ public class UserListController extends HttpServlet {
         // 파라미터로 받아온 값을 utf-8로 인코딩해줌 post방식은 인코딩을 해줘야함
         req.setCharacterEncoding("utf-8");
 
-        String spageNum = req.getParameter("pageNum");
-        String field = req.getParameter("field");
-        String keyword = req.getParameter("keyword");
 
+        //페이징처리 연습
+
+        //페이지 번호를 받는다
+        String spageNum = req.getParameter("pageNum");
         int pageNum = 1;
 
+        // 페이지번호를 받으면 형변환 하여 pagdNum 변수에 담는다
         if(spageNum != null){
             pageNum = Integer.parseInt(spageNum);
         }
-        int startRow = (pageNum-1)*10+1;
 
+        int startRow = (pageNum-1)*10+1;
+        int endRow = startRow+9;
+
+        PostsDao pdao = new PostsDao();
+        //dao.PostsList(startRow,endRow);
 
 
 

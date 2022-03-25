@@ -20,14 +20,13 @@ public class UserJoinController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setCharacterEncoding("utf-8");
 
-        String id=req.getParameter("id");
+        req.setCharacterEncoding("utf-8");
+        String email=req.getParameter("email");
         String pw=req.getParameter("pw");
         String name=req.getParameter("name");
-        String mail=req.getParameter("mail");
 
-        UserTableVo vo = new UserTableVo(id,pw,name,mail,null,null);
+        UserTableVo vo = new UserTableVo(0,email,name,pw,null,null);
         UserTableDao dao = new UserTableDao();
         int n = dao.insert(vo);
 

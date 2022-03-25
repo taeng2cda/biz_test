@@ -14,10 +14,9 @@
 <h1>게시판 생성</h1>
 test
     <form action="${pageContext.request.contextPath}/posts/create" method="post">
-        닉네임 <input type="text" value="" name="id"> <br>
         글제목 <input type="text" value="" name="title"> <br>
         글내용 <input type="text" value="" name="content"> <br>
-        ID <input type="text" value="${id}" name="user_id" readonly> <br>
+        <input type="hidden"  value="${sessionScope.user_id}" name="user_id">
         <input type="submit" value="생성하기">
     </form>
 

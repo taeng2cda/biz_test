@@ -1,6 +1,7 @@
 package main.java.Controller;
 
 import main.java.DAO.UserTableDao;
+import main.java.VO.UserTableVo;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,19 +23,31 @@ public class UserLoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String id=req.getParameter("id");
+        req.setCharacterEncoding("utf-8");
+        String email=req.getParameter("email");
         String pw=req.getParameter("pw");
         HttpSession session = req.getSession();
 
-        System.out.println(id + pw);
+        System.out.println(email + pw);
 
         UserTableDao dao = new UserTableDao();
-        boolean login = dao.logincheck(id,pw);
+        boolean login = dao.logincheck(email,pw);
         System.out.println(login);
 
         if(login){
             System.out.println("Login OK");
-            session.setAttribute("id",id);
+
+            //아이디로 셀렉해서 pk,name,cre,up 세션에 담기
+            UserTableVo vo = new UserTableVo();
+
+            vo = dao.Idselect(email);
+
+            session.setAttribute("email",email);
+            session.setAttribute("user_id",vo.getId());
+            session.setAttribute("name",vo.getName());
+            session.setAttribute("created_at",vo.getCreated_at());
+            session.setAttribute("updated_at",vo.getUpdated_at());
+
             req.getRequestDispatcher("/main.jsp").forward(req,resp);
         }else{
             System.out.println("Login false");

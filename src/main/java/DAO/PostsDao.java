@@ -5,13 +5,31 @@ import main.jdbc.JDBCUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class PostsDao {
     public PostsDao(){}
 
     //게시판 목록
 
+    /*
+    public ArrayList<PostsVo> PostsList(int startRow, int endRow){
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        con = JDBCUtil.getCon();
+        String sql = "";
+        12월 2일 58분 쯤
+        select R1.* from(
+	    select * from posts order by ID asc
+        ) R1
+        limit 10 OFFSET 0;
+   }
+
+     */
 
     //게시판 생성
     public int insert(PostsVo vo){
@@ -20,14 +38,12 @@ public class PostsDao {
 
         try{
             con = JDBCUtil.getCon();
-            String sql ="insert into posts values(?,?,?,?,DEFAULT,DEFAULT)";
+            String sql ="insert into posts(title,content,user_id,created_at,updated_at) values(?,?,?,DEFAULT,DEFAULT)";
             pstmt = con.prepareStatement(sql);
 
-            pstmt.setString(1,vo.getId());
-            pstmt.setString(2,vo.getTitle());
-            pstmt.setString(3,vo.getContent());
-            pstmt.setString(4,vo.getUser_id());
-
+            pstmt.setString(1,vo.getTitle());
+            pstmt.setString(2,vo.getContent());
+            pstmt.setInt(3,vo.getUser_id());
             System.out.println("TEST");
 
             return pstmt.executeUpdate();

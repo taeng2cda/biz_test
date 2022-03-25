@@ -13,19 +13,19 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    String id=request.getParameter("findid");
+    String email=request.getParameter("findid");
     boolean exist=false;
     Connection con=null;
     PreparedStatement pstmt=null;
     ResultSet rs=null;
     try{
         con= JDBCUtil.getCon();
-        String sql="select * from usertable where id=?";
+        String sql="select * from users where email=?";
         pstmt=con.prepareStatement(sql);
-        pstmt.setString(1,id);
+        pstmt.setString(1,email);
         rs=pstmt.executeQuery();
         if(rs.next()){
-            exist=true;
+            exist = true;
         }
     }catch(SQLException s){
         s.printStackTrace();

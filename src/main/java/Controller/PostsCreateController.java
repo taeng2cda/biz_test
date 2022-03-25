@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet("/posts/create")
@@ -22,14 +23,13 @@ public class PostsCreateController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         req.setCharacterEncoding("utf-8");
-        String id = req.getParameter("id");
         String title = req.getParameter("title");
         String content = req.getParameter("content");
         String user_id = req.getParameter("user_id");
+        int result = Integer.parseInt(user_id);
 
-        PostsVo vo = new PostsVo(id,title,content,user_id,null,null);
+        PostsVo vo = new PostsVo(0,title,content,result,null,null);
         PostsDao dao = new PostsDao();
-
         int n = dao.insert(vo);
 
         if(n>0){
@@ -37,6 +37,6 @@ public class PostsCreateController extends HttpServlet {
         }else{
             req.setAttribute("presult" , "success");
         }
-        req.getRequestDispatcher(req.getContextPath()+"/posts/postscreate.jsp").forward(req, resp);
+        req.getRequestDispatcher(req.getContextPath()+"/posts/postslist.jsp").forward(req, resp);
     }
 }

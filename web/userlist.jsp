@@ -20,7 +20,7 @@
 
 <table>
     <tr>
-        <th>아이디</th>
+        <th>오토인크리먼트</th>
         <th>이름</th>
         <th>이메일</th>
         <th>최근 수정일</th>
@@ -36,23 +36,9 @@
     </tr>
         </c:forEach>
 </table>
-<div>
-    <c:forEach var="i" begin="${startPage }" end="${endPage }">
-        <c:choose>
-            <c:when test="${i==pageNum }">
-                <a href="${cp }/member/list?pageNum=${i}&keyword=${keyword}&field=${field}">
-                    <span style="color:red">${i }</span>
-                </a>
-            </c:when>
 
-            <c:otherwise>
-                <a href="${cp}/member/list?pageNum=${i }&keyword=${keyword}&field=${field}">
-                    <span style="color:black">${i }</span>
-                </a>
-            </c:otherwise>
-        </c:choose>
-    </c:forEach>
-</div>
 <br><a href="<%=request.getContextPath()%>/main.do">Home</a>
+
+
 </body>
 </html>

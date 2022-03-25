@@ -15,7 +15,7 @@
   <h1>로그인 페이지</h1>
     <br>
   <form method="post" action="<%=request.getContextPath()%>/login">
-      ID<input type="text" name="id" value=""><br>
+      ID<input type="text" name="email" value=""><br>
       PW<input type="password" name="pw" value=""><br>
     <input type="submit" value="로그인">
   </form>

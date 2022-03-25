@@ -3,15 +3,16 @@ package main.java.VO;
 import java.util.Date;
 
 public class PostsVo {
-    private String id;
+    private int id;
     private String title;
     private String content;
-    private String user_id;
+    private int user_id;
     private Date created_at;
     private Date updated_at;
 
     public PostsVo(){}
-    public PostsVo(String id, String title, String content, String user_id, Date created_at, Date updated_at) {
+
+    public PostsVo(int id, String title, String content, int user_id, Date created_at, Date updated_at) {
         this.id = id;
         this.title = title;
         this.content = content;
@@ -20,11 +21,11 @@ public class PostsVo {
         this.updated_at = updated_at;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -44,11 +45,11 @@ public class PostsVo {
         this.content = content;
     }
 
-    public String getUser_id() {
+    public int getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(String user_id) {
+    public void setUser_id(int user_id) {
         this.user_id = user_id;
     }
 

@@ -14,14 +14,14 @@
 <body>
 
     <c:choose>
-        <c:when test="${sessionScope.id == null}" >
+        <c:when test="${sessionScope.email == null}" >
             <ul>
                 <li> <a href="/login">로그인</a> </li>
                 <li> <a href="/join">회원가입</a> </li>
             </ul>
         </c:when>
 
-        <c:when test="${sessionScope.id != null }" >
+        <c:when test="${sessionScope.email != null }" >
             <ul>
                 <li> <a href="/logout">로그아웃</a> </li>
                 <li> <a href="/join">회원가입</a> </li>

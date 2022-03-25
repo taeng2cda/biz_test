@@ -15,13 +15,12 @@
 <h1>회원 가입 결과</h1>
 
 <c:choose>
-    <c:when test="${requestScope.result=='success' }">
+    <c:when test="${requestScope.result == 'success' }">
         <h1>회원가입 완료</h1><br>
     </c:when>
 
     <c:otherwise>
         <h1>회원가입 실패</h1>
-
     </c:otherwise>
 
 </c:choose>

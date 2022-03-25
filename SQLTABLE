@@ -2,15 +2,16 @@
 alter table usertable convert to CHARSET UTF8;
 ALTER TABLE (테이블명) convert to charset utf8;
 
-회원테이블
+회원 테이블
 create table users(
 	id int(255) not null auto_increment primary key,
-	email varchar(255) not null,
+	email varchar(255) not null ,
 	name varchar(255) not null,
 	password varchar(255) not null,
 	created_at TIMESTAMP DEFAULT NOW(),
 	updated_at TIMESTAMP DEFAULT NOW()
 );
+alter table users add unique key (email);
 
 게시판 테이블
 create table posts(
@@ -22,3 +23,7 @@ create table posts(
  updated_at TIMESTAMP DEFAULT NOW(),
  foreign key (user_id) references users(id)
 );
+
+alter table users convert to CHARSET UTF8;
+alter table posts convert to CHARSET UTF8;
+commit;

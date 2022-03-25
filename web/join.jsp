@@ -17,7 +17,7 @@
     <table>
         <tr>
             <th>ID</th>
-            <td><input type="text" name="id" id="id" value="" onkeyup="Check()"></td>
+            <td><input type="text" name="email" id="email" value="" onkeyup="Check()"></td>
             <td> <span id="idcheck"></span> </td>
         </tr>
         <tr>
@@ -27,10 +27,6 @@
         <tr>
             <th>name</th>
             <td><input type="text" name="name" value=""></td>
-        </tr>
-        <tr>
-            <th>mail</th>
-            <td><input type="text" name="mail" value=""></td>
         </tr>
         <tr>
             <td><input type="submit" value="회원 가입"></td>
@@ -45,7 +41,7 @@
     function Check(){
         xhr=new XMLHttpRequest();
         xhr.onreadystatechange=success;
-        let findid = document.getElementById("id").value;
+        let findid = document.getElementById("email").value;
         console.log(findid);
 
         if(findid==""){
