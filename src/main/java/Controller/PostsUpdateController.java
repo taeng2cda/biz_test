@@ -1,44 +1,52 @@
 package main.java.Controller;
 
 import main.java.DAO.PostsDao;
-import main.java.VO.PostsVo;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Date;
 
-@WebServlet("/posts/create")
-public class PostsCreateController extends HttpServlet {
+@WebServlet("/posts/update")
+public class PostsUpdateController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher(req.getContextPath()+"/posts/postscreate.jsp").forward(req, resp);
+
+        String id = req.getParameter("id");
+        req.setAttribute("postsid",id);
+        req.getRequestDispatcher("/posts/postsupdate.jsp").forward(req,resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         req.setCharacterEncoding("utf-8");
+        String id = req.getParameter("id");
         String title = req.getParameter("title");
         String content = req.getParameter("content");
-        String user_id = req.getParameter("user_id");
-        int result = Integer.parseInt(user_id);
+        int id1 = Integer.parseInt(id);
 
-        PostsVo vo = new PostsVo(0,title,content,result,null,null);
+        System.out.println("id : "+ id1);
+        System.out.println("title : "+ title);
+        System.out.println("contnet : "+ content);
+
+        //dao에 id값을 넘겨서 업데이트 후 반응
         PostsDao dao = new PostsDao();
-        int n = dao.insert(vo);
+
+        int n = dao.PostsUpdate(id1,title,content);
 
         if(n>0){
-            req.setAttribute("resultcreate" , "success");
+            req.setAttribute("resultupdate","success");
             resp.sendRedirect(req.getContextPath()+"/posts/list?pageNum=1");
         }else{
-            req.setAttribute("resultcreate" , "fail");
-            req.getRequestDispatcher(req.getContextPath()+"/posts/postslist.jsp").forward(req, resp);
+            req.setAttribute("resultupdate","fail");
+            req.getRequestDispatcher(req.getContextPath()+"/posts/result.jsp").forward(req,resp);
         }
+
 
     }
 }
