@@ -18,34 +18,31 @@ public class UserListController extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        // 파라미터로 받아온 값을 utf-8로 인코딩해줌 post방식은 인코딩을 해줘야함
         req.setCharacterEncoding("utf-8");
-
-
-        //페이징처리 연습
-
-        //페이지 번호를 받는다
         String spageNum = req.getParameter("pageNum");
         int pageNum = 1;
-
-        // 페이지번호를 받으면 형변환 하여 pagdNum 변수에 담는다
         if(spageNum != null){
             pageNum = Integer.parseInt(spageNum);
         }
 
         int startRow = (pageNum-1)*10+1;
-        int endRow = startRow+9;
+        int endRow = startRow + 9;
 
-        PostsDao pdao = new PostsDao();
-        //dao.PostsList(startRow,endRow);
-
-
-
-        UserTableVo vo = new UserTableVo();
         UserTableDao dao = new UserTableDao();
+        ArrayList<UserTableVo> userlist = dao.userlist(startRow,endRow);
 
-        ArrayList<UserTableVo> list = dao.userlist();
-        req.setAttribute("list",list);
+        int count = dao.getCount();  //전체 글의 갯수
+        int pageCount =(int)Math.ceil(count/10.0);      //전체 페이지 갯수  4
+        int startPageNum = ((pageNum-1)/10*10) +1;   //시작 페이지 번호
+        int endPageNum = startPageNum + 9;     //끝페이지 번호
+        if(endPageNum > pageCount){
+            endPageNum = pageCount;
+        }
+        req.setAttribute("userlist",userlist);
+        req.setAttribute("pageCount",pageCount);
+        req.setAttribute("startPage",startPageNum);
+        req.setAttribute("endPage",endPageNum);
+        req.setAttribute("pageNum",pageNum);
 
         req.getRequestDispatcher(req.getContextPath()+"/userlist.jsp").forward(req,resp);
     }

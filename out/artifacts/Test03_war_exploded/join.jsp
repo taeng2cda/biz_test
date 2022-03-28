@@ -48,7 +48,7 @@
             document.getElementById("idcheck").innerHTML="";
             return;
         }
-        xhr.open('get','${pageContext.request.contextPath}/idcheck.jsp?findid='+ findid,true);
+        xhr.open('get','${pageContext.request.contextPath}/idcheck?findid='+ findid,true);
         xhr.send();
     }
     function success(){

@@ -21,7 +21,11 @@ public class PostsDao {
 
         try{
         con = JDBCUtil.getCon();
-        String sql = "select * from posts order by id desc limit 10 OFFSET ?";
+        String sql = "select posts.id ,posts.title , posts.content , users.email , posts.created_at , posts.updated_at  \n" +
+                "from posts inner join users \n" +
+                "on USERS.id = posts.user_id\n" +
+                "order by posts.id desc\n" +
+                "limit 10 offset ?";
 
             pstmt = con.prepareStatement(sql);
             pstmt.setInt(1,startRow);
@@ -32,11 +36,11 @@ public class PostsDao {
                 int id = rs.getInt("id");
                 String title = rs.getString("title");
                 String content = rs.getString("content");
-                int user_id = rs.getInt("user_id");
+                String email = rs.getString("email");
                 Date created_at = rs.getDate("created_at");
                 Date updated_at = rs.getDate("updated_at");
 
-                PostsVo vo = new PostsVo(id,title,content,user_id,created_at,updated_at);
+                PostsVo vo = new PostsVo(id,title,content,email,created_at,updated_at);
                 list.add(vo);
 
             }

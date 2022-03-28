@@ -2,6 +2,7 @@ package main.java.Controller;
 
 import main.java.DAO.UserTableDao;
 import main.java.VO.UserTableVo;
+import main.jdbc.MD5;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,7 +27,10 @@ public class UserJoinController extends HttpServlet {
         String pw=req.getParameter("pw");
         String name=req.getParameter("name");
 
-        UserTableVo vo = new UserTableVo(0,email,name,pw,null,null);
+        //패스워드를 MD5 해시하여 vo에 담기
+        String password = MD5.MD5(pw);
+
+        UserTableVo vo = new UserTableVo(0,email,name,password,null,null);
         UserTableDao dao = new UserTableDao();
         int n = dao.insert(vo);
 

@@ -2,6 +2,7 @@ package main.java.Controller;
 
 import main.java.DAO.UserTableDao;
 import main.java.VO.UserTableVo;
+import main.jdbc.MD5;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,13 +26,13 @@ public class UserLoginController extends HttpServlet {
 
         req.setCharacterEncoding("utf-8");
         String email=req.getParameter("email");
-        String pw=req.getParameter("pw");
+        String pw = req.getParameter("pw");
         HttpSession session = req.getSession();
 
-        System.out.println(email + pw);
+        String password = MD5.MD5(pw);
 
         UserTableDao dao = new UserTableDao();
-        boolean login = dao.logincheck(email,pw);
+        boolean login = dao.logincheck(email,password);
         System.out.println(login);
 
         if(login){

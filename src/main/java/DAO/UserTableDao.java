@@ -47,6 +47,7 @@ public class UserTableDao {
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
+        System.out.println(pw);
 
         boolean check = false;
         String sql = "select * from users where email=?";
@@ -65,7 +66,6 @@ public class UserTableDao {
                     check = true;
                 }
             }
-
             return check;
         }catch (SQLException se){
             se.printStackTrace();
@@ -78,38 +78,61 @@ public class UserTableDao {
 
 
     //회원 목록
-    public ArrayList userlist(){
+    public ArrayList<UserTableVo> userlist(int startRow, int endRow ){
 
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-        String sql = "select * from users";
 
         try{
             con = JDBCUtil.getCon();
+            String sql = "select * from USERS order by created_at desc limit 10 OFFSET ?";
             pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1,startRow);
             rs = pstmt.executeQuery();
+            ArrayList<UserTableVo> userlist = new ArrayList<UserTableVo>();
 
-            ArrayList<UserTableVo> list = new ArrayList<UserTableVo>();
-            while(rs.next()){
+            while (rs.next()){
                 int id = rs.getInt("id");
-                String password = rs.getString("password");
                 String email = rs.getString("email");
                 String name = rs.getString("name");
                 Date created_at = rs.getDate("created_at");
                 Date updated_at = rs.getDate("updated_at");
-
-                UserTableVo vo = new UserTableVo(id,password,email,name,created_at,updated_at);
-                list.add(vo);
+                UserTableVo vo = new UserTableVo(id,email,name,null,created_at,updated_at);
+                userlist.add(vo);
             }
-            return list;
-        }catch (SQLException se){
+            return userlist;
+
+            }catch (SQLException se){
             se.printStackTrace();
             return null;
         }finally {
             JDBCUtil.close(con,pstmt,rs);
         }
 
+
+    }
+
+    //전체 글의 갯수 리턴
+    public int getCount(){
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        String sql ="select COUNT(ID) from Users";
+        ResultSet rs = null;
+
+        try{
+            con = JDBCUtil.getCon();
+            pstmt = con.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            rs.next();
+            int count = rs.getInt(1);
+            return count;
+        }catch (SQLException se){
+            se.printStackTrace();
+            return -1;
+        }finally {
+            JDBCUtil.close(con,pstmt,rs);
+        }
     }
 
     // 아이디를 조회하여 사용자 정보를 세션에 담기위한 메소드

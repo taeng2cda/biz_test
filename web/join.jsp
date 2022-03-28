@@ -39,16 +39,16 @@
     var xhr=null;
 
     function Check(){
+        //ajax를 사용하기 위해 객체를 생성
         xhr=new XMLHttpRequest();
         xhr.onreadystatechange=success;
         let findid = document.getElementById("email").value;
-        console.log(findid);
 
         if(findid==""){
             document.getElementById("idcheck").innerHTML="";
             return;
         }
-        xhr.open('get','${pageContext.request.contextPath}/idcheck.jsp?findid='+ findid,true);
+        xhr.open('get','${pageContext.request.contextPath}/idcheck?findid='+ findid,true);
         xhr.send();
     }
     function success(){

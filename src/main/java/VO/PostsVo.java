@@ -10,13 +10,25 @@ public class PostsVo {
     private Date created_at;
     private Date updated_at;
 
-    public PostsVo(){}
+    // 유저테이블의 이메일 가상 컬럼
+    private String email;
 
+    public PostsVo(){}
     public PostsVo(int id, String title, String content, int user_id, Date created_at, Date updated_at) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.user_id = user_id;
+        this.created_at = created_at;
+        this.updated_at = updated_at;
+    }
+
+    // inner join을 위한 생성자 오버로딩
+    public PostsVo(int id, String title, String content, String email, Date created_at, Date updated_at) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.email = email;
         this.created_at = created_at;
         this.updated_at = updated_at;
     }
@@ -68,4 +80,16 @@ public class PostsVo {
     public void setUpdated_at(Date updated_at) {
         this.updated_at = updated_at;
     }
+
+
+    //가상컬럼 게터 세터
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+
 }
