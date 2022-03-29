@@ -1,6 +1,7 @@
 package main.java.Controller;
 
 import main.java.DAO.PostsDao;
+import main.java.VO.PostsVo;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,7 +18,13 @@ public class PostsUpdateController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String id = req.getParameter("id");
-        req.setAttribute("postsid",id);
+        int id1 = Integer.parseInt(id);
+        PostsDao dao = new PostsDao();
+        PostsVo vo = dao.oneselect(id1);
+
+        req.setAttribute("postsid",id1);
+        req.setAttribute("title",vo.getTitle());
+        req.setAttribute("content",vo.getContent());
         req.getRequestDispatcher("/posts/postsupdate.jsp").forward(req,resp);
     }
 

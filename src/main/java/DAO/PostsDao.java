@@ -1,6 +1,7 @@
 package main.java.DAO;
 
 import main.java.VO.PostsVo;
+import main.java.VO.UserTableVo;
 import main.jdbc.JDBCUtil;
 
 import java.sql.Connection;
@@ -146,4 +147,43 @@ public class PostsDao {
         }
     }
 
+    //하나의 게시글 정보 읽어오기
+    public PostsVo oneselect(int id) {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String sql = "SELECT * FROM POSTS WHERE ID = ?";
+        PostsVo vo = new PostsVo();
+        try {
+            con = JDBCUtil.getCon();
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            rs = pstmt.executeQuery();
+
+            while (rs.next()){
+               int id1 = rs.getInt("id");
+               String title = rs.getString("title");
+               String content = rs.getString("content");
+               int user_id = rs.getInt("user_id");
+               Date created_at = rs.getDate("created_at");
+               Date updated_at = rs.getDate("updated_at");
+
+               vo.setId(id1);
+               vo.setTitle(title);
+               vo.setContent(content);
+               vo.setUser_id(user_id);
+               vo.setCreated_at(created_at);
+               vo.setUpdated_at(updated_at);
+            }
+
+            return vo;
+
+        } catch (SQLException se) {
+            se.printStackTrace();
+            return null;
+        }finally {
+            JDBCUtil.close(con,pstmt,rs);
+        }
+
+    }
 }
