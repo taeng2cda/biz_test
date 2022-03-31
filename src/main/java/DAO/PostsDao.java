@@ -15,21 +15,40 @@ public class PostsDao {
     public PostsDao(){}
 
     //게시판 목록
-    public ArrayList<PostsVo> PostsList(int startRow, int endRow){
+    public ArrayList<PostsVo> PostsList(int startRow, int endRow , String column , String search){
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
 
+        String sql = "";
+
         try{
         con = JDBCUtil.getCon();
-        String sql = "select posts.id ,posts.title , posts.content , users.email , posts.created_at , posts.updated_at  \n" +
-                "from posts inner join users \n" +
-                "on USERS.id = posts.user_id\n" +
-                "order by posts.id desc\n" +
-                "limit 10 offset ?";
+
+
+        if(column == null || column.equals("")){
+            sql = "select p.id , p.title , p.content , u.email , p.updated_at , p.created_at " +
+                    "from posts p inner join users u " +
+                    "on u.id = p.user_id " +
+                    "order by created_at desc " +
+                    "limit 10 offset ? ;";
+        }else{
+            sql = "select p.id , p.title , p.content , u.email , p.updated_at , p.created_at " +
+                    "from posts p inner join users u " +
+                    "on u.id = p.user_id ";
+
+            if(column.equals("p.title")) sql += "where p.title like '%"+ search +"%' ";
+            else if(column.equals("p.content"))             sql += "where p.content like '%"+ search +"%' ";
+            else if(column.equals("u.email"))               sql += "where u.email like '%"+ search +"%' ";
+            else if(column.equals("p.title-p.content"))     sql += "where p.title like '%"+ search +"%' or p.content like '%"+ search +"%' ";
+
+            sql += "order by created_at desc limit 10 offset ?";
+        }
 
             pstmt = con.prepareStatement(sql);
             pstmt.setInt(1,startRow);
+
+
             rs = pstmt.executeQuery();
             ArrayList<PostsVo> list = new ArrayList<PostsVo>();
 

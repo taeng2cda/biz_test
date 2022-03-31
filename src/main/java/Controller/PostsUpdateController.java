@@ -25,6 +25,9 @@ public class PostsUpdateController extends HttpServlet {
         req.setAttribute("postsid",id1);
         req.setAttribute("title",vo.getTitle());
         req.setAttribute("content",vo.getContent());
+        //fk값을 세션에 담은 이유는 유저글을 수정할때 조건문을 줌.  (posts/postsupdate.jsp)
+        req.setAttribute("postsfk",vo.getUser_id());
+
         req.getRequestDispatcher("/posts/postsupdate.jsp").forward(req,resp);
     }
 

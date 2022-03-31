@@ -14,7 +14,7 @@ public class PostsVo {
     private String email;
 
     public PostsVo(){}
-    public PostsVo(int id, String title, String content, int user_id, Date created_at, Date updated_at) {
+    public PostsVo(int id, String title, String content, int user_id, Date created_at, Date updated_at)  {
         this.id = id;
         this.title = title;
         this.content = content;
@@ -24,14 +24,16 @@ public class PostsVo {
     }
 
     // inner join을 위한 생성자 오버로딩
-    public PostsVo(int id, String title, String content, String email, Date created_at, Date updated_at) {
+    public PostsVo(int id, String title, String content, String email, Date created_at, Date updated_at ) {
         this.id = id;
         this.title = title;
         this.content = content;
-        this.email = email;
+        this.user_id = user_id;
         this.created_at = created_at;
         this.updated_at = updated_at;
+        this.email = email;
     }
+
 
     public int getId() {
         return id;
@@ -86,7 +88,6 @@ public class PostsVo {
     public String getEmail() {
         return email;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }
