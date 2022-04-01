@@ -18,6 +18,7 @@
     <input type="hidden" id="input3" name="id" value="${postsid}" >
     <h4>제목</h4>  <input type="text" id="input1" name="title" value="${title}" readonly ><br>
     <h4>내용</h4>  <input type="text" id="input2" name="content" value="${content}" readonly ><br>
+
     <input type="submit" value="수정하기">
 
     <!-- 히든 타입으로 숨겨 value값을 스크립트에 넘길것임 -->
