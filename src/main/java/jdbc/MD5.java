@@ -1,4 +1,4 @@
-package main.jdbc;
+package jdbc;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;

@@ -1,7 +1,7 @@
-package main.java.Controller;
+package Controller;
 
-import main.java.DAO.PostsDao;
-import main.java.VO.PostsVo;
+import DAO.PostsDao;
+import VO.PostsVo;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Date;
 
 @WebServlet("/posts/update")
 public class PostsUpdateController extends HttpServlet {

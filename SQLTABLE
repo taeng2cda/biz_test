@@ -33,6 +33,7 @@ create table comments(
  updated_at TIMESTAMP DEFAULT NOW(),
  foreign key (post_id) references posts(user_id)
 );
+alter table comments add foreign key(Writer) references users(email);
 
 alter table users convert to CHARSET UTF8;
 alter table posts convert to CHARSET UTF8;

@@ -1,7 +1,8 @@
 package main.java.DAO;
 
-import main.java.VO.UserTableVo;
-import main.jdbc.JDBCUtil;
+import VO.UserTableVo;
+import jdbc.JDBCUtil;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

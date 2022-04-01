@@ -1,9 +1,8 @@
-package main.java.Controller;
+package Controller;
 
-import main.jdbc.JDBCUtil;
+import jdbc.JDBCUtil;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +13,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+
 
 @WebServlet("/idcheck")
 public class UserIdCheckController extends HttpServlet {

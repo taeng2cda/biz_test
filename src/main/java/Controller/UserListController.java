@@ -1,8 +1,7 @@
-package main.java.Controller;
+package Controller;
 
-import main.java.DAO.PostsDao;
+import VO.UserTableVo;
 import main.java.DAO.UserTableDao;
-import main.java.VO.UserTableVo;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

@@ -1,8 +1,8 @@
-package main.java.Controller;
+package Controller;
 
+import VO.UserTableVo;
+import jdbc.MD5;
 import main.java.DAO.UserTableDao;
-import main.java.VO.UserTableVo;
-import main.jdbc.MD5;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

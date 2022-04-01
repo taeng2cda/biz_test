@@ -1,6 +1,6 @@
-package main.java.Controller;
+package Controller;
 
-import main.java.DAO.PostsDao;
+import DAO.PostsDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
