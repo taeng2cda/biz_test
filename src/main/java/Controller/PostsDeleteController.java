@@ -13,19 +13,19 @@ import java.io.IOException;
 public class PostsDeleteController extends HttpServlet {
 
     @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String id = req.getParameter("id");
+        String posts_id = req.getParameter("posts_id");
         PostsDao dao = new PostsDao();
-        int id1 = Integer.parseInt(id);
+        int id1 = Integer.parseInt(posts_id);
 
         // dao delete문에 id값 넣기
         int n = dao.PostsDelete(id1);
-
         if( n > 0){
-            req.setAttribute("resultdelete","success");
-            resp.sendRedirect(req.getContextPath()+"/posts/list?pageNum=1");
+            System.out.println("seccuss");
+            req.getRequestDispatcher(req.getContextPath()+"/index.jsp").forward(req,resp);
         }else{
+            System.out.println("fail");
             req.setAttribute("resultdelete","fail");
             req.getRequestDispatcher(req.getContextPath()+"/posts/result.jsp").forward(req,resp);
         }

@@ -36,7 +36,7 @@
   <p> 시스템 에러가 발생하여 페이지를 표시할 수 없습니다.<br>
     관리자에게 문의하시거나 잠시 후 다시 시도하세요.</p>
 
-  <a href="/home">메인으로 돌아가기</a>
+  <a href="${pageContext.request.contextPath}/main.do">메인으로 돌아가기</a>
 </div>
 </body>
 </html>

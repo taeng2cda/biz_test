@@ -36,7 +36,7 @@
     <p> 페이지가 존재하지 않거나, 사용할 수 없는 페이지입니다.<br>
         주소가 올바른지 다시 한번 확인해주세요. </p>
 
-    <a href="/home">메인으로 돌아가기</a>
+    <a href="${pageContext.request.contextPath}/main.do">메인으로 돌아가기</a>
 </div>
 </body>
 </html>

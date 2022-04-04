@@ -16,17 +16,17 @@
     <c:choose>
         <c:when test="${sessionScope.email == null}" >
             <ul>
-                <li> <a href="/login">로그인</a> </li>
-                <li> <a href="/join">회원가입</a> </li>
+                <li> <a href="${pageContext.request.contextPath}/login">로그인</a> </li>
+                <li> <a href="${pageContext.request.contextPath}/join">회원가입</a> </li>
             </ul>
         </c:when>
 
         <c:when test="${sessionScope.email != null }" >
             <ul>
-                <li> <a href="/logout">로그아웃</a> </li>
-                <li> <a href="/join">회원가입</a> </li>
-                <li> <a href="/userlist">회원목록</a> </li>
-                <li> <a href="/posts/list">게시판</a> </li>
+                <li> <a href="${pageContext.request.contextPath}/logout">로그아웃</a> </li>
+                <li> <a href="${pageContext.request.contextPath}/join">회원가입</a> </li>
+                <li> <a href="${pageContext.request.contextPath}/userlist">회원목록</a> </li>
+                <li> <a href="${pageContext.request.contextPath}/posts/list">게시판</a> </li>
             </ul>
         </c:when>
 

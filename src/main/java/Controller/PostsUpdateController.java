@@ -24,8 +24,12 @@ public class PostsUpdateController extends HttpServlet {
         req.setAttribute("postsid",id1);
         req.setAttribute("title",vo.getTitle());
         req.setAttribute("content",vo.getContent());
+        req.setAttribute("posts_created_at",vo.getFormat_created_at() );
+        req.setAttribute("posts_updated_at",vo.getFormat_updatred_at() );
         //fk값을 세션에 담은 이유는 유저글을 수정할때 조건문을 줌.  (posts/postsupdate.jsp)
         req.setAttribute("postsfk",vo.getUser_id());
+
+        System.out.println(vo.toString());
 
         req.getRequestDispatcher("/posts/postsupdate.jsp").forward(req,resp);
     }
@@ -34,10 +38,10 @@ public class PostsUpdateController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         req.setCharacterEncoding("utf-8");
-        String id = req.getParameter("id");
+        String posts_id = req.getParameter("posts_id");
         String title = req.getParameter("title");
         String content = req.getParameter("content");
-        int id1 = Integer.parseInt(id);
+        int id1 = Integer.parseInt(posts_id);
 
         System.out.println("id : "+ id1);
         System.out.println("title : "+ title);
@@ -50,7 +54,7 @@ public class PostsUpdateController extends HttpServlet {
 
         if(n>0){
             req.setAttribute("resultupdate","success");
-            resp.sendRedirect(req.getContextPath()+"/posts/list?pageNum=1");
+            req.getRequestDispatcher(req.getContextPath()+"/index.jsp").forward(req,resp);
         }else{
             req.setAttribute("resultupdate","fail");
             req.getRequestDispatcher(req.getContextPath()+"/posts/result.jsp").forward(req,resp);

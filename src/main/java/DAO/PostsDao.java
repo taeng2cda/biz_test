@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -183,15 +184,21 @@ public class PostsDao {
                String title = rs.getString("title");
                String content = rs.getString("content");
                int user_id = rs.getInt("user_id");
-               Date created_at = rs.getDate("created_at");
-               Date updated_at = rs.getDate("updated_at");
+               Date created_at = rs.getTimestamp("created_at");
+               Date updated_at = rs.getTimestamp("updated_at");
+
+               //데이터포맷
+               SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일   HH시 mm분");
+                String format_Created_at = simpleDateFormat.format(created_at);
+                String format_Updated_at = simpleDateFormat.format(updated_at);
 
                vo.setId(id1);
                vo.setTitle(title);
                vo.setContent(content);
                vo.setUser_id(user_id);
-               vo.setCreated_at(created_at);
-               vo.setUpdated_at(updated_at);
+               vo.setFormat_created_at(format_Created_at);
+               vo.setFormat_updatred_at(format_Updated_at);
+
             }
 
             return vo;

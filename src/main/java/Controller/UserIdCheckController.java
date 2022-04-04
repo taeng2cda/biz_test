@@ -26,7 +26,9 @@ public class UserIdCheckController extends HttpServlet {
         Connection con=null;
         PreparedStatement pstmt=null;
         ResultSet rs=null;
+
         try{
+
             con= JDBCUtil.getCon();
             String sql="select * from users where email=?";
             pstmt=con.prepareStatement(sql);

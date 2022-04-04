@@ -12,6 +12,23 @@ public class PostsVo {
 
     // 유저테이블의 이메일 가상 컬럼
     private String email;
+    //데이터 포맷 가상컬럼
+    private String format_created_at;
+    private String format_updatred_at;
+
+
+    @Override
+    public String toString() {
+        return "PostsVo{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", user_id=" + user_id +
+                ", created_at=" + created_at +
+                ", updated_at=" + updated_at +
+                ", email='" + email + '\'' +
+                '}';
+    }
 
     public PostsVo(){}
     public PostsVo(int id, String title, String content, int user_id, Date created_at, Date updated_at)  {
@@ -93,4 +110,17 @@ public class PostsVo {
     }
 
 
+    //포맷데이터 게터 세터
+    public String getFormat_created_at() {
+        return format_created_at;
+    }
+    public void setFormat_created_at(String format_created_at) {
+        this.format_created_at = format_created_at;
+    }
+    public String getFormat_updatred_at() {
+        return format_updatred_at;
+    }
+    public void setFormat_updatred_at(String format_updatred_at) {
+        this.format_updatred_at = format_updatred_at;
+    }
 }

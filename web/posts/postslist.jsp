@@ -34,7 +34,6 @@
         <th>작성자</th>
         <th>최근 수정일</th>
         <th>게시판 작성일</th>
-        <th>삭제</th>
     </tr>
     <c:forEach var="vo" items="${list}" >
         <tr>
@@ -44,7 +43,6 @@
             <td> ${vo.email}</td>
             <td> ${vo.updated_at}</td>
             <td> ${vo.created_at}</td>
-            <td> <a href="<%=request.getContextPath()%>/posts/delete?id=${vo.id}">글삭제</a> </td>
         </tr>
     </c:forEach>
 
