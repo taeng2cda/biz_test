@@ -59,6 +59,6 @@ public class PostsListController extends HttpServlet {
         req.setAttribute("startPage",startPageNum);
         req.setAttribute("endPage",endPageNum);
         req.setAttribute("pageNum",pageNum);
-        req.getRequestDispatcher(req.getContextPath()+"/posts/postslist.jsp").forward(req, resp);
+        req.getRequestDispatcher(req.getContextPath()+"/WEB-INF/posts/postslist.jsp").forward(req, resp);
     }
 }

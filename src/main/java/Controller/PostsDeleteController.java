@@ -23,11 +23,11 @@ public class PostsDeleteController extends HttpServlet {
         int n = dao.PostsDelete(id1);
         if( n > 0){
             System.out.println("seccuss");
-            req.getRequestDispatcher(req.getContextPath()+"/index.jsp").forward(req,resp);
+            req.getRequestDispatcher(req.getContextPath()+"/WEB-INF/index.jsp").forward(req,resp);
         }else{
             System.out.println("fail");
             req.setAttribute("resultdelete","fail");
-            req.getRequestDispatcher(req.getContextPath()+"/posts/result.jsp").forward(req,resp);
+            req.getRequestDispatcher(req.getContextPath()+"/WEB-INF/posts/result.jsp").forward(req,resp);
         }
 
     }

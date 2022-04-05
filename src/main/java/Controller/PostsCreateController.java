@@ -15,7 +15,7 @@ public class PostsCreateController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher(req.getContextPath()+"/posts/postscreate.jsp").forward(req, resp);
+        req.getRequestDispatcher(req.getContextPath()+"/WEB-INF/posts/postscreate.jsp").forward(req, resp);
     }
 
     @Override
@@ -33,10 +33,10 @@ public class PostsCreateController extends HttpServlet {
 
         if(n>0){
             req.setAttribute("resultcreate" , "success");
-            resp.sendRedirect(req.getContextPath()+"/posts/list?pageNum=1");
+            resp.sendRedirect(req.getContextPath()+"/WEB-INF/posts/list?pageNum=1");
         }else{
             req.setAttribute("resultcreate" , "fail");
-            req.getRequestDispatcher(req.getContextPath()+"/posts/postslist.jsp").forward(req, resp);
+            req.getRequestDispatcher(req.getContextPath()+"/WEB-INF/posts/postslist.jsp").forward(req, resp);
         }
 
     }

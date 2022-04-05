@@ -17,7 +17,7 @@ public class UserLoginController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect(req.getContextPath()+"/login.jsp");
+        resp.sendRedirect("/WEB-INF/login.jsp");
 
     }
 
@@ -49,10 +49,10 @@ public class UserLoginController extends HttpServlet {
             session.setAttribute("created_at",vo.getCreated_at());
             session.setAttribute("updated_at",vo.getUpdated_at());
 
-            req.getRequestDispatcher("/main.jsp").forward(req,resp);
+            req.getRequestDispatcher("/WEB-INF/main.jsp").forward(req,resp);
         }else{
             System.out.println("Login false");
-            resp.sendRedirect(req.getContextPath()+"/main.jsp");
+            resp.sendRedirect(req.getContextPath()+"/WEB-INF/main.jsp");
         }
 
 

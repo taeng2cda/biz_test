@@ -13,6 +13,6 @@ public class UserLogoutController extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getSession().invalidate();
-        resp.sendRedirect(req.getContextPath()+"/main.do");
+        resp.sendRedirect(req.getContextPath()+"/WEB-INF/main.do");
     }
 }

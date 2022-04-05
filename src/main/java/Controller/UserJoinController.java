@@ -16,7 +16,7 @@ public class UserJoinController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher(req.getContextPath()+"/join.jsp").forward(req, resp);
+        req.getRequestDispatcher(req.getContextPath()+"/WEB-INF/join.jsp").forward(req, resp);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class UserJoinController extends HttpServlet {
         }else{
             req.setAttribute("result" , "fail");
         }
-        req.getRequestDispatcher(req.getContextPath()+"/result.jsp").forward(req, resp);
+        req.getRequestDispatcher(req.getContextPath()+"/WEB-INF/result.jsp").forward(req, resp);
     }
 
 }

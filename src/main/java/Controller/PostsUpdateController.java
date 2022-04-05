@@ -31,7 +31,7 @@ public class PostsUpdateController extends HttpServlet {
 
         System.out.println(vo.toString());
 
-        req.getRequestDispatcher("/posts/postsupdate.jsp").forward(req,resp);
+        req.getRequestDispatcher("/WEB-INF/posts/postsupdate.jsp").forward(req,resp);
     }
 
     @Override
@@ -54,10 +54,10 @@ public class PostsUpdateController extends HttpServlet {
 
         if(n>0){
             req.setAttribute("resultupdate","success");
-            req.getRequestDispatcher(req.getContextPath()+"/index.jsp").forward(req,resp);
+            req.getRequestDispatcher(req.getContextPath()+"/WEB-INF/index.jsp").forward(req,resp);
         }else{
             req.setAttribute("resultupdate","fail");
-            req.getRequestDispatcher(req.getContextPath()+"/posts/result.jsp").forward(req,resp);
+            req.getRequestDispatcher(req.getContextPath()+"/WEB-INF/posts/result.jsp").forward(req,resp);
         }
 
 

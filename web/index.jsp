@@ -12,10 +12,10 @@
   </head>
   <body>
 
+
 <script>
-    location.href="${pageContext.request.contextPath}/main.do";
+   location.href="${pageContext.request.contextPath}/main.do";
 </script>
-  <br>
 
 
   </body>

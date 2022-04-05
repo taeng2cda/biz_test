@@ -43,6 +43,6 @@ public class UserListController extends HttpServlet {
         req.setAttribute("endPage",endPageNum);
         req.setAttribute("pageNum",pageNum);
 
-        req.getRequestDispatcher(req.getContextPath()+"/userlist.jsp").forward(req,resp);
+        req.getRequestDispatcher(req.getContextPath()+"/WEB-INF/userlist.jsp").forward(req,resp);
     }
 }
