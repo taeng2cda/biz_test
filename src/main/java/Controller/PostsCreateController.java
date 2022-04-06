@@ -29,14 +29,14 @@ public class PostsCreateController extends HttpServlet {
 
         PostsVo vo = new PostsVo(0,title,content,result,null,null);
         PostsDao dao = new PostsDao();
-        int n = dao.insert(vo);
+        int createResult = dao.insert(vo);
 
-        if(n>0){
+        if(createResult>0){
             req.setAttribute("resultcreate" , "success");
-            resp.sendRedirect(req.getContextPath()+"/WEB-INF/posts/list?pageNum=1");
+            resp.sendRedirect("/posts/list?pageNum=1");
         }else{
             req.setAttribute("resultcreate" , "fail");
-            req.getRequestDispatcher(req.getContextPath()+"/WEB-INF/posts/postslist.jsp").forward(req, resp);
+            resp.sendRedirect("/posts/list?pageNum=1");
         }
 
     }

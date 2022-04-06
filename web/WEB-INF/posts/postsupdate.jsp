@@ -61,9 +61,9 @@
 <form method="post" id="updateform" action="<%=request.getContextPath()%>/posts/update">
     <!-- 히든 타입으로 숨겨 value값을 자바스크립트에 넘길것임 -->
     <!-- user_id = 유저테이블의 pk -->
-    <input type="hidden" id="user_id" name="id" value="${user_id}" >
+    <input type="hidden" id="user_id" name="user_id" value="${user_id}" >
     <!-- postsfk = 게시판테이블의 fk -->
-    <input type="hidden" id="postsfk" name="id" value="${postsfk}" >
+    <input type="hidden" id="postsfk" name="postsfk" value="${postsfk}" >
     <table id="table">
         <tr>
             <th>글번호</th>
@@ -113,7 +113,12 @@
 
 <!-- 댓글창 구현하기-->
 <div>
-댓글창 리스트 불러오고 from데이터 넣고
+    <h3>댓글 [변수]개</h3>
+
+</div>
+<!-- 댓글 작성창-->
+<div>
+
 </div>
 
 </body>

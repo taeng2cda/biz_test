@@ -27,6 +27,7 @@
                 <li> <a href="${pageContext.request.contextPath}/join">회원가입</a> </li>
                 <li> <a href="${pageContext.request.contextPath}/userlist">회원목록</a> </li>
                 <li> <a href="${pageContext.request.contextPath}/posts/list">게시판</a> </li>
+                <li> <a href="${pageContext.request.contextPath}/barcode/list">바코드 목록</a> </li>
             </ul>
         </c:when>
 

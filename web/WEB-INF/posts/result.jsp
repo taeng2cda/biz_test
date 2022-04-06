@@ -15,26 +15,30 @@
 <h1> 게시판 응답 결과</h1>
 
     <c:choose>
-        <!-- 게시물 생성 작업 완료-->
-        <c:when test="${requestScope.resultcreate=='success' }">
+
+        <c:when test="${resultcreate=='success' }">
             <h2>요청작업 완료</h2>
         </c:when>
 
-        <!-- 게시물 수정 작업 완료-->
-        <c:when test="${requestScope.resultupdate=='success' }">
+        <c:when test="${resultupdate=='success' }">
             <h2>게시물 수정 완료</h2>
         </c:when>
 
-        <!-- 게시물 삭제 실패-->
-        <c:when test="${requestScope.resultupdate=='fail' }">
+        <c:when test="${resultupdate=='fail' }">
+            <h2>게시물 수정 실패</h2>
+        </c:when>
+
+        <c:when test="${resultupdate=='success' }">
+            <h2>게시물 삭제 성공</h2>
+        </c:when>
+
+        <c:when test="${resultupdate=='fail' }">
             <h2>게시물 삭제 실패</h2>
         </c:when>
 
         <c:otherwise>
             <h2>요청작업 실패</h2>
         </c:otherwise>
-
-
     </c:choose>
 
 

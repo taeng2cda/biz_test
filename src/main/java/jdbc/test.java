@@ -34,7 +34,7 @@ public class test {
 
         /* 바코드 데이터 값이 변경되면 바코드 이미지도 바뀜. */
         String barcodeData = randomnumber;
-
+        //randomnumber
         int x = 3;
         int y = 2;
         int scaleX = 18;
@@ -57,7 +57,6 @@ public class test {
             fos.close();
         }catch(Exception e) {
             System.out.println("error : "+e.getMessage());
-            System.out.println("exception" + e.getMessage());
         }
     }
 

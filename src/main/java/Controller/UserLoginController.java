@@ -17,8 +17,7 @@ public class UserLoginController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect("/WEB-INF/login.jsp");
-
+        req.getRequestDispatcher(req.getContextPath()+"/WEB-INF/login.jsp").forward(req,resp);
     }
 
     @Override
@@ -52,7 +51,7 @@ public class UserLoginController extends HttpServlet {
             req.getRequestDispatcher("/WEB-INF/main.jsp").forward(req,resp);
         }else{
             System.out.println("Login false");
-            resp.sendRedirect(req.getContextPath()+"/WEB-INF/main.jsp");
+            req.getRequestDispatcher(req.getContextPath()+"/WEB-INF/login.jsp").forward(req,resp);
         }
 
 

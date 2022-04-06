@@ -38,28 +38,27 @@ public class PostsUpdateController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         req.setCharacterEncoding("utf-8");
-        String posts_id = req.getParameter("posts_id");
+
+        int posts_id = Integer.parseInt(req.getParameter("posts_id"));
         String title = req.getParameter("title");
         String content = req.getParameter("content");
-        int id1 = Integer.parseInt(posts_id);
 
-        System.out.println("id : "+ id1);
+        System.out.println("id : "+ posts_id);
         System.out.println("title : "+ title);
         System.out.println("contnet : "+ content);
 
         //dao에 id값을 넘겨서 업데이트 후 반응
         PostsDao dao = new PostsDao();
 
-        int n = dao.PostsUpdate(id1,title,content);
+        int n = dao.PostsUpdate(posts_id,title,content);
 
         if(n>0){
             req.setAttribute("resultupdate","success");
-            req.getRequestDispatcher(req.getContextPath()+"/WEB-INF/index.jsp").forward(req,resp);
+            req.getRequestDispatcher(req.getContextPath()+"/WEB-INF/posts/result.jsp").forward(req,resp);
         }else{
             req.setAttribute("resultupdate","fail");
             req.getRequestDispatcher(req.getContextPath()+"/WEB-INF/posts/result.jsp").forward(req,resp);
         }
-
 
     }
 }

@@ -14,7 +14,7 @@ public class PostsDeleteController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        req.setCharacterEncoding("utf-8");
         String posts_id = req.getParameter("posts_id");
         PostsDao dao = new PostsDao();
         int id1 = Integer.parseInt(posts_id);
@@ -23,13 +23,12 @@ public class PostsDeleteController extends HttpServlet {
         int n = dao.PostsDelete(id1);
         if( n > 0){
             System.out.println("seccuss");
-            req.getRequestDispatcher(req.getContextPath()+"/WEB-INF/index.jsp").forward(req,resp);
+            req.setAttribute("resultdelete","success");
         }else{
             System.out.println("fail");
             req.setAttribute("resultdelete","fail");
-            req.getRequestDispatcher(req.getContextPath()+"/WEB-INF/posts/result.jsp").forward(req,resp);
         }
-
+        req.getRequestDispatcher(req.getContextPath()+"/WEB-INF/posts/result.jsp").forward(req,resp);
     }
 
 }

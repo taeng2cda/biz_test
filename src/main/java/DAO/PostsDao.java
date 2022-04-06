@@ -31,7 +31,7 @@ public class PostsDao {
                     "from posts p inner join users u " +
                     "on u.id = p.user_id " +
                     "order by created_at desc " +
-                    "limit 10 offset ? ;";
+                    "limit 10 offset ? ";
         }else{
             sql = "select p.id , p.title , p.content , u.email , p.updated_at , p.created_at " +
                     "from posts p inner join users u " +

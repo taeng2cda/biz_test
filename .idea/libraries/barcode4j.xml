@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="barcode4j">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../lll/barcode4j.jar!/" />
-      <root url="jar://$PROJECT_DIR$/../lll/itextpdf-5.1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../library/barcode4j.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../library/itextpdf-5.1.0.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
