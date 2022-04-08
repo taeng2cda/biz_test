@@ -37,17 +37,15 @@
                 <th id="th4">제품 설명</th>
                 <th id="th5">수정한 날짜</th>
                 <th id="th6">생성된 날짜</th>
-                <th id="th7">바코드 생성</th>
             </tr>
             <c:forEach var="vo" items="${list}" >
                 <tr id="list_tr">
-                    <td id="td1"> <a href="<%=request.getContextPath()%>/barcode/list?id=${vo.id}">${vo.id}</a></td>
-                    <td id="td2"> ${vo.barcodeKey}</td>
+                    <td id="td1"> <a href="<%=request.getContextPath()%>/barcode/detail?id=${vo.id}">${vo.id}</a></td>
+                    <td id="barcodeKey" > ${vo.barcodeKey}</td>
                     <td id="td3"> ${vo.title}</td>
                     <td id="td4"> ${vo.content}</td>
                     <td id="td5"> ${vo.updated_at}</td>
                     <td id="td6"> ${vo.created_at}</td>
-                    <td id="td7"> 클릭 </td>
                 </tr>
             </c:forEach>
         </table>
@@ -73,4 +71,5 @@
 </div>
 
 </body>
+
 </html>

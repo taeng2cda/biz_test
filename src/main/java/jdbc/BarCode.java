@@ -11,29 +11,20 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.nio.file.Files;
 
-public class test {
+public class BarCode {
 
     static int width = 456;
     static int height = 110;
 
+    //테스트
     public static void main(String[] args) {
 
-        String randomnumber = "";
-
-        for(int i =0; i < 11; i++){
-            int resule = (int)(Math.random()*10+1);
-            randomnumber += resule;
-        }
-        System.out.println(randomnumber);
-
-
-        init(randomnumber);
+        System.out.println(CreateBarcodeImg("12345678910") );
     }
 
-    private static boolean init(String randomnumber) {
-
+    // 바코드 키값을 받으면 이미지를 생성해줌
+    public static boolean CreateBarcodeImg(String barcodekey) {
         String barcodeType = "code128";
 
         //디렉토리 생성하는 기능 생성되면 ture 이미있다면 false
@@ -42,8 +33,7 @@ public class test {
         System.out.println("디렉토리 생성여부 : " + directoryCreated);
 
         /* 바코드 데이터 값이 변경되면 바코드 이미지도 바뀜. */
-        String barcodeData = randomnumber;
-        //randomnumber
+        // String barcodeData = barcodekey;
         int x = 3;
         int y = 2;
         int scaleX = 18;
@@ -53,26 +43,26 @@ public class test {
         g = imgCoupon.createGraphics();
         try{
             /* 이미지 생성 */
-            createBarcodeBuf(g, barcodeType, barcodeData, x, y, scaleX, scaleY);
+            createBarcodeBuf(g, barcodeType, barcodekey, x, y, scaleX, scaleY);
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             ImageIO.write(imgCoupon, "png", baos);
             baos.flush();
             byte[] buffer = baos.toByteArray();
 
             // 아래 는 버퍼에 제대로 담겼는지 테스트로 찍어봄...
-            File f = new File("c:\\barcode\\"+randomnumber+".png");
+            File f = new File("c:\\barcode\\"+barcodekey+".png");
             FileOutputStream fos = new FileOutputStream(f);
             fos.write(buffer);
             fos.flush();
             fos.close();
-            return true;
         }catch(Exception e) {
             System.out.println("error : "+e.getMessage());
             return false;
         }
+        return true;
     }
 
-    private static  void  createBarcodeBuf(Graphics2D g2d, String barcodeType, String barcodeData, int x, int y,  int scaleX, int scaleY) throws Exception {
+    public static  void  createBarcodeBuf(Graphics2D g2d, String barcodeType, String barcodeData, int x, int y,  int scaleX, int scaleY) throws Exception {
 
         AbstractBarcodeBean bean = null;
         BarcodeClassResolver resolver = new DefaultBarcodeClassResolver();
@@ -89,5 +79,3 @@ public class test {
 
     }
 }
-
-

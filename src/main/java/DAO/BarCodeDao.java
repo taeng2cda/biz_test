@@ -1,17 +1,65 @@
 package DAO;
 
 import VO.BarCodeVo;
+import jdbc.BarCode;
 import jdbc.JDBCUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class BarCodeDao {
     public BarCodeDao(){}
+
+    //바코드 정보 검색
+    public BarCodeVo SelectBarcode(int id){
+
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        String sql = "select * from barcode where ID = ?";
+        BarCodeVo vo = new BarCodeVo();
+
+        try{
+            con = JDBCUtil.getCon();;
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1,id);
+            rs = pstmt.executeQuery();
+
+            while (rs.next()){
+                String barcodeKey = rs.getString("barcodeKey");
+                String title = rs.getString("title");
+                String content = rs.getString("content");
+                Date created_at = rs.getTimestamp("created_at");
+                Date updated_at = rs.getTimestamp("updated_at");
+
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일   HH시 mm분");
+                String format_Created_at = simpleDateFormat.format(created_at);
+                String format_Updated_at = simpleDateFormat.format(updated_at);
+
+                vo.setId(id);
+                vo.setBarcodeKey(barcodeKey);
+                vo.setTitle(title);
+                vo.setContent(content);
+                vo.setFormat_created_at(format_Created_at);
+                vo.setFormat_updatred_at(format_Updated_at);
+            }
+            return vo;
+
+        }catch (SQLException se){
+            se.printStackTrace();
+            return null;
+        }finally {
+            JDBCUtil.close(con,pstmt,rs);
+        }
+
+
+    }
 
     //바코드 게시판 목록
     public ArrayList<BarCodeVo> BarcodeList(int startRow, int endRow , String column , String search){
